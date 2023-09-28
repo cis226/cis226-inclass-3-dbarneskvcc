@@ -4,7 +4,7 @@
 import os
 
 # First-Party imports
-from employee import Employee
+from employee import SalaryEmployee, HourlyEmployee
 from user_interface import UserInterface
 
 
@@ -16,12 +16,12 @@ def main(*args):
 
     # List to hold employees
     employees = []
-    employees.append(Employee("David", "Barnes", 835.00))
-    employees.append(Employee("James", "Kirk", 453.00))
-    employees.append(Employee("Jean-Luc", "Picard", 290.00))
-    employees.append(Employee("Benjamin", "Sisko", 587.00))
-    employees.append(Employee("Kathryn", "Janeway", 184.00))
-    employees.append(Employee("Jonathan", "Archer", 135.00))
+    employees.append(SalaryEmployee("David", "Barnes", 835.00))
+    employees.append(SalaryEmployee("James", "Kirk", 453.00))
+    employees.append(SalaryEmployee("Jean-Luc", "Picard", 290.00))
+    employees.append(SalaryEmployee("Benjamin", "Sisko", 587.00))
+    employees.append(SalaryEmployee("Kathryn", "Janeway", 184.00))
+    employees.append(SalaryEmployee("Jonathan", "Archer", 135.00))
 
     # Get some input from the user
     selection = ui.display_menu_and_get_response()
