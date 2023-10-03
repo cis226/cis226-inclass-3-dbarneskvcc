@@ -18,10 +18,10 @@ def main(*args):
     employees = []
     employees.append(SalaryEmployee("David", "Barnes", 835.00))
     employees.append(SalaryEmployee("James", "Kirk", 453.00))
-    employees.append(SalaryEmployee("Jean-Luc", "Picard", 290.00))
-    employees.append(SalaryEmployee("Benjamin", "Sisko", 587.00))
+    employees.append(HourlyEmployee("Jean-Luc", "Picard", 9.00, 40))
+    employees.append(HourlyEmployee("Benjamin", "Sisko", 7.00, 30))
     employees.append(SalaryEmployee("Kathryn", "Janeway", 184.00))
-    employees.append(SalaryEmployee("Jonathan", "Archer", 135.00))
+    employees.append(HourlyEmployee("Jonathan", "Archer", 15.00, 35))
 
     # Get some input from the user
     selection = ui.display_menu_and_get_response()
