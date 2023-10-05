@@ -4,7 +4,7 @@
 import os
 
 # First-Party imports
-from employee import SalaryEmployee, HourlyEmployee
+from employee import SalaryEmployee, HourlyEmployee, Employee
 from user_interface import UserInterface
 
 
@@ -13,6 +13,11 @@ def main(*args):
 
     # Make a new instance of the UserInterface class
     ui = UserInterface()
+
+    # Use these next two lines to show how it is not possible to make
+    # an instance of an abstract class that has abstract methods.
+    # my_employee = Employee("D", "B")
+    # print(my_employee)
 
     # List to hold employees
     employees = []

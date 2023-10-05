@@ -1,6 +1,10 @@
 """Employee Module"""
 
-class Employee:
+# System Imports
+from abc import ABC, abstractmethod
+
+
+class Employee(ABC):
     """Class to represent a single Employee"""
 
     WEEKS_PER_YEAR = 52
@@ -22,6 +26,38 @@ class Employee:
         # end up printing more than we want.
         # return self.__str__()
 
+    # Made this property abstract so that child classes of this class
+    # must make an implementation for this method / property
+    @property
+    @abstractmethod
+    def weekly_salary(self):
+        """Property for weekly salary"""
+        raise NotImplementedError()
+
+    # Now that the above abstract method is required in children and
+    # technically defined in here, we can use that property in this method.
+    # No need to redefine it in the child classes.
+    @property
+    def formatted_weekly_salary(self):
+        """Property for weekly salary formatted as currency"""
+        return f"${self.weekly_salary:.2f}"
+
+    # Made this property abstract so that child classes of this class
+    # must make an implementation for this method / property
+    @property
+    @abstractmethod
+    def yearly_salary(self):
+        """Property for yearly salary"""
+        raise NotImplementedError()
+
+    # Now that the above abstract method is required in children and
+    # technically defined in here, we can use that property in this method.
+    # No need to redefine it in the child classes.
+    @property
+    def formatted_yearly_salary(self):
+        """Property for yearly salary formatted as currency"""
+        return f"${self.yearly_salary:.2f}"
+
 
 class SalaryEmployee(Employee):
     """Class to represent a single salary employee"""
@@ -29,37 +65,29 @@ class SalaryEmployee(Employee):
     def __init__(self, first_name, last_name, weekly_salary):
         """Constructor"""
         super().__init__(first_name, last_name)
-        self.weekly_salary = weekly_salary
+        self._weekly_salary = weekly_salary
 
     def __str__(self):
         """String method"""
-        return (
-            f"{super().__str__()} "
-            f"{self.formatted_weekly_salary:>14}"
-        )
+        return f"{super().__str__()} {self.formatted_weekly_salary:>14}"
 
     @property
-    def formatted_weekly_salary(self):
-        """Property for weekly salary formatted as currency"""
-        return f"${self.weekly_salary:.2f}"
+    def weekly_salary(self):
+        """Property for weekly salary"""
+        return self._weekly_salary
 
     @property
     def yearly_salary(self):
         """Property for yearly salary"""
         return self.weekly_salary * self.WEEKS_PER_YEAR
 
-    @property
-    def formatted_yearly_salary(self):
-        """Property for yearly salary formatted as currency"""
-        return f"${self.yearly_salary:.2f}"
-
     def apply_percentage_raise(self, percentage):
         """Accept a percentage raise and apply it to the weekly salary"""
         self.weekly_salary = self.weekly_salary * (1 + (percentage / 100))
 
+
 class HourlyEmployee(Employee):
     """Class to represent a single hourly employee"""
-
 
     def __init__(self, first_name, last_name, hourly_rate, hours_per_week):
         """Constructor"""
@@ -69,10 +97,7 @@ class HourlyEmployee(Employee):
 
     def __str__(self):
         """String method"""
-        return (
-            f"{super().__str__()} "
-            f"{self.formatted_weekly_salary:>14}"
-        )
+        return f"{super().__str__()} " f"{self.formatted_weekly_salary:>14}"
 
     @property
     def weekly_salary(self):
@@ -80,19 +105,9 @@ class HourlyEmployee(Employee):
         return self.hourly_rate * self.hours_per_week
 
     @property
-    def formatted_weekly_salary(self):
-        """Property for weekly salary formatted as currency"""
-        return f"${self.weekly_salary:.2f}"
-
-    @property
     def yearly_salary(self):
         """Property for yearly salary"""
         return self.weekly_salary * self.WEEKS_PER_YEAR
-
-    @property
-    def formatted_yearly_salary(self):
-        """Property for yearly salary formatted as currency"""
-        return f"${self.yearly_salary:.2f}"
 
     def apply_percentage_raise(self, percentage):
         """Accept a percentage raise and apply it to the hourly rate"""
