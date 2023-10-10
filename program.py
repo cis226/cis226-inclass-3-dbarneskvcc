@@ -4,7 +4,8 @@
 import os
 
 # First-Party imports
-from employee import SalaryEmployee, HourlyEmployee, Employee
+from employee import SalaryEmployee, HourlyEmployee
+from person_filter import PersonFilter
 from user_interface import UserInterface
 
 
@@ -41,6 +42,31 @@ def main(*args):
             # Convert each employee to a string and add it to the outputstring
             for employee in employees:
                 # Concatenate to the output_string
+                output_string += f"{employee}{os.linesep}"
+
+            # Use the UI class to print out the string
+            ui.print_list(output_string)
+
+        # See if the input they sent is equal to 2.
+        if selection == 2:
+            # Create Person Filter
+            person_filter = PersonFilter()
+            filtered_employees = person_filter.filter_by_first_name(
+                employees,
+                "David",
+            )
+            # Shows how if not inheriting from Person, duck typing will fail.
+            # filtered_employees = person_filter.filter_by_age(
+            #     employees,
+            #     "23",
+            # )
+
+            # Create string for concatenation
+            output_string = ""
+
+            # Convert each employee to a string and add it to the output
+            for employee in filtered_employees:
+                # Concat to output_string
                 output_string += f"{employee}{os.linesep}"
 
             # Use the UI class to print out the string

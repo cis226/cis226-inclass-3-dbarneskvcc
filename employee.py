@@ -2,17 +2,18 @@
 
 # System Imports
 from abc import ABC, abstractmethod
+from person_filter import Person
 
 
-class Employee(ABC):
+class Employee(Person, ABC):
     """Class to represent a single Employee"""
 
     WEEKS_PER_YEAR = 52
 
     def __init__(self, first_name, last_name):
         """Constructor"""
-        self.first_name = first_name
-        self.last_name = last_name
+        self._first_name = first_name
+        self._last_name = last_name
 
     def __str__(self):
         """String method"""
@@ -25,6 +26,24 @@ class Employee(ABC):
         # try to run the __str__ of the child class and
         # end up printing more than we want.
         # return self.__str__()
+
+    # Properties that are required for us to write from the Person class.
+    # Person has these three properties marked as abstract, so if we plan
+    # to inherit from it, we must provide implementations for them.
+    @property
+    def first_name(self):
+        """First Name Property"""
+        return self._first_name
+
+    @property
+    def last_name(self):
+        """Last Name Property"""
+        return self._last_name
+
+    @property
+    def age(self):
+        """Age Property"""
+        return None
 
     # Made this property abstract so that child classes of this class
     # must make an implementation for this method / property

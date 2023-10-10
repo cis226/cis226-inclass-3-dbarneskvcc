@@ -5,7 +5,7 @@ class UserInterface:
     """Class for doing all UI for program"""
 
     # Menu choices constant
-    MAX_MENU_CHOICES = 2
+    MAX_MENU_CHOICES = 3
 
     # No Constructor as we do not need to accept any parameters or set any
     # class level variables. But, this does not mean that we can't do that
@@ -45,7 +45,8 @@ class UserInterface:
         """Print menu to user"""
         print("What would you like to do?")
         print("1. Print List")
-        print("2. Exit")
+        print("2. Print Filtered List")
+        print("3. Exit")
 
     def _print_prompt(self):
         """Print main prompt to user"""
