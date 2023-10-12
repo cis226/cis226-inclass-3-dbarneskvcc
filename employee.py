@@ -88,7 +88,7 @@ class SalaryEmployee(Employee):
 
     def __str__(self):
         """String method"""
-        return f"{super().__str__()} {self.formatted_weekly_salary:>14}"
+        return f"{super().__str__()} " f"{self.formatted_weekly_salary:>14}"
 
     @property
     def weekly_salary(self):
